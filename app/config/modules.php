@@ -9,7 +9,6 @@ return [
     'Menu',
     'Meta',
     'Pages',
-    'Dummy',
     'Redirect',
     'Sitemap',
     'Sites',

@@ -13,6 +13,5 @@ return [
     '/sitemap' => new Patterns('Modules.Sitemap.urls', 'sitemap'),
     
     '/robots.txt' => new Patterns('Modules.Sites.urls', 'sites'),
-    '/pages/' => new Patterns('Modules.Pages.urls', 'page'),
-    '/' => new Patterns('Modules.Dummy.urls', 'dummy'),
+    '/' => new Patterns('Modules.Pages.urls', 'page'),
 ];
