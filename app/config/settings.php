@@ -20,6 +20,9 @@ return [
         'sourceLanguage' => 'en',
         'charset' => 'utf-8',
     ],
+    'errorHandler' => [
+        'useTemplate' => true
+    ],
     'components' => [
         'middleware' => [
             'class' => '\Mindy\Middleware\MiddlewareManager',
@@ -84,11 +87,6 @@ return [
             'class' => '\Mindy\Template\Renderer',
             'mode' => MINDY_DEBUG ? Renderer::RECOMPILE_ALWAYS : Renderer::RECOMPILE_NEVER,
         ],
-        'errorHandler' => [
-            'class' => '\Mindy\Base\ErrorHandler',
-            'adminInfo' => Params::get('core.email_webmaster'),
-            'errorAction' => 'core/main/error'
-        ],
         'session' => [
             'class' => '\Modules\User\Components\UserSession',
             'sessionName' => 'mindy',
@@ -101,7 +99,7 @@ return [
             'class' => '\Mindy\Logger\LoggerManager',
             'handlers' => [
                 'default' => [
-                    'class' => '\Mindy\Logger\Handler\RotatingFileHandler',
+                    'class' => MINDY_DEBUG ? '\Mindy\Logger\Handler\RotatingFileHandler' ? '\Mindy\Logger\Handler\NullHandler',
                     'level' => MINDY_DEBUG ? "DEBUG" : "ERROR"
                 ],
                 'null' => [

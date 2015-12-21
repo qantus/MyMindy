@@ -13,7 +13,8 @@
     "pace": "~1.0.1",
     "underscore": "~1.7.0",
     "mmodal": "~1.0.5",
-    "modernizr": "~2.8.3"
+    "modernizr": "~2.8.3",
+    "fotorama": "~4.6.4"
   },
   "devDependencies": {}
 }

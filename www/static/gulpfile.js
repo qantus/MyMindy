@@ -58,13 +58,15 @@ var paths = {
         'vendor/jquery.inputmask/dist/inputmask/jquery.inputmask.js',
         'vendor/pace/pace.js',
         'vendor/underscore/underscore.js',
+        'vendor/fotorama/fotorama.js',
 
         'js/ajax_validation.js',
         'js/comments.js',
         'js/csrf.js',
         'js/endless.js',
         'js/endless_on_scroll.js',
-        'js/chat.js',
+        'js/js_validation.js',
+        'js/links.js',
         'js/app.js'
     ],
     coffee: 'js/**/*.coffee',

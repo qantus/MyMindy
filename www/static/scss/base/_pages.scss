@@ -1,7 +1,8 @@
 article{
   ul{
-    list-style: none;
+    list-style: none !important;
     margin: 5px 0px;
+
     li{
       padding-left: 10px;
       position: relative;
@@ -19,6 +20,7 @@ article{
       }
     }
   }
+
   a{
     border-bottom: 1px solid;
   }
