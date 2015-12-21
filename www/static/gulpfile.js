@@ -42,7 +42,7 @@ var dst = {
 var paths = {
     js: [
         'vendor/jquery/dist/jquery.min.js',
-        'vendor/modernizr/modernizr.js',
+        'vendor/foundation/js/vendor/modernizr.js',
         'vendor/jquery.cookie/jquery.cookie.js',
         'vendor/fastclick/lib/fastclick.js',
         'vendor/foundation/js/foundation.min.js',
