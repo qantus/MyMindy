@@ -99,7 +99,7 @@ return [
             'class' => '\Mindy\Logger\LoggerManager',
             'handlers' => [
                 'default' => [
-                    'class' => MINDY_DEBUG ? '\Mindy\Logger\Handler\RotatingFileHandler' ? '\Mindy\Logger\Handler\NullHandler',
+                    'class' => MINDY_DEBUG ? '\Mindy\Logger\Handler\RotatingFileHandler' : '\Mindy\Logger\Handler\NullHandler',
                     'level' => MINDY_DEBUG ? "DEBUG" : "ERROR"
                 ],
                 'null' => [
