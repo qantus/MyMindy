@@ -53,9 +53,14 @@
         bind: function () {
             var me = this;
 
-            $(window).on('scroll', function(e){
-                me.handle();
-            });
+            var stickyBottom = this.element.offset().top + this.element.height();
+            var parentBottom = this.parent.offset().top + this.parent.height();
+
+            if (stickyBottom < parentBottom) {
+                $(window).on('scroll', function(e){
+                    me.handle();
+                });
+            }
         },
         handle: function(){
             var top = $(window).scrollTop();
