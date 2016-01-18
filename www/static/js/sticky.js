@@ -21,12 +21,14 @@
             bottom: undefined,
             parent: 'parent',
             width: undefined,
-            dimension: 'top'
+            dimension: 'top',
+            offset: false
         },
         /**
          * Элемент, над которым выполняются действия
          */
         element: undefined,
+        initOffset: 0,
         /**
          * Инициализация
          * @param element
@@ -40,6 +42,7 @@
             this.parent = this.options.parent == 'parent' ? this.element.parent() : this.element.closest(this.options.parent);
             this.element.css({width: this.options.width});
             this.element.addClass("msticky-dimension-" + this.options.dimension);
+            this.initOffset = this.element.offset().top - this.parent.offset().top;
             this.bind();
             $(window).trigger('scroll');
             return this;
@@ -61,10 +64,13 @@
             var parentHeight = this.parent.height();
             var elementHeight = this.element.height();
             var elementOffset = this.options.top;
-
+            var totalOffset = offset - elementOffset;
+            if (this.options.offset) {
+                totalOffset += this.initOffset;
+            }
 
             if (this.options.dimension == 'top') {
-                if (top > offset - elementOffset) {
+                if (top > totalOffset) {
                     if (offset + parentHeight > top + elementOffset + elementHeight) {
                         // Sticky
                         this.setStickyT();
