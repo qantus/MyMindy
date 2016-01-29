@@ -4,25 +4,30 @@ var process = require('process');
 var concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
-    minifyCSS = require('gulp-minify-css'),
+    cssnano = require('gulp-cssnano'),
     sass = require('gulp-sass'),
     changed = require('gulp-changed'),
-    clean = require('gulp-clean'),
+    rimraf = require('gulp-rimraf'),
     cache = require('gulp-cached'),
-    coffee = require('gulp-coffee'),
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload'),
+    empty = require('gulp-empty');
 
 var version = '1.0.0';
 
-var minifyOpts = {
-
-};
+var minify = false;
+if (!minify) {
+    uglify = empty;
+    imagemin = empty;
+    cssnano = empty;
+}
 
 var imagesOpts = {
     optimizationLevel: 5,
     progressive: true,
     interlaced: true
 };
+
+var noop = function(){};
 
 var sassOpts = {
     includePaths: [
@@ -95,17 +100,7 @@ gulp.task('fonts', function() {
         .pipe(livereload());
 });
 
-gulp.task('coffee', function() {
-    gulp.src(paths.coffee)
-        .pipe(coffee({
-            bare: true
-        }).on('error', function(err) {
-            console.log(err);
-        }))
-        .pipe(gulp.dest(dst.js))
-});
-
-gulp.task('js', ['coffee'], function() {
+gulp.task('js', function() {
     return gulp.src(paths.js)
         .pipe(uglify())
         .pipe(concat(version + '.all.js'))
@@ -129,7 +124,7 @@ gulp.task('sass', function() {
 
 gulp.task('css', ['sass'], function() {
     return gulp.src(paths.css)
-        .pipe(minifyCSS(minifyOpts))
+        .pipe(cssnano())
         .pipe(concat(version + '.all.css'))
         .pipe(gulp.dest(dst.css))
         .pipe(livereload());
@@ -148,7 +143,7 @@ gulp.task('watch', ['default'], function() {
 gulp.task('clean', function() {
     return gulp.src(['dist/*'], {
         read: false
-    }).pipe(clean());
+    }).pipe(rimraf());
 });
 
 gulp.task('default', ['clean'], function() {
